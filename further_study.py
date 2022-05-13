@@ -46,7 +46,7 @@ def custom_append(input_list, value):
 
     """
     input_list[8:] = [value]
-    
+    # input_list[len(input_list):] = [value]
 
 
 def custom_extend(input_list, second_list):
@@ -66,6 +66,7 @@ def custom_extend(input_list, second_list):
     """
     
     input_list[3:] = second_list
+    # input_list[len(input_list):] = second_list
     
 
 
@@ -86,6 +87,10 @@ def custom_insert(input_list, index, value):
     # for i in input_list:
     #     if i == index:
     #         input_list[i:] = value
+    front = input_list[:index]
+    end = input_list[index:]
+    middle = [value]
+    input_list = front + middle + end
     
 
 
@@ -107,6 +112,8 @@ def custom_remove(input_list, value):
     
     index_to_remove = input_list.index(value)
     input_list[index_to_remove:index_to_remove + 1] = []
+    
+    
     
 
 
@@ -229,8 +236,16 @@ def custom_equality(some_list, another_list):
 
     """
     # still working on this problem
-    some_list.sort()
-    another_list.sort()
+    if len(some_list) != len(another_list):
+        return False
+    
+    for index in range(0, len(some_list)):
+        if some_list[index] != another_list[index]:
+            return False
+    return True
+    
+    # some_list.sort()
+    # another_list.sort()
 
     # if some_list != another_list:
     #     return False
